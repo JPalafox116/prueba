@@ -26,6 +26,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
   grid-gap: 6rem;
+  margin: 20px;
 }
 
 .card {
@@ -101,4 +102,8 @@ body {
 
 .search-filter-container {
   display: flex;
+}
+
+.header {
+  padding: 16px;
 }

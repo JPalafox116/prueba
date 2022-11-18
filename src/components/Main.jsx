@@ -1,11 +1,12 @@
 import React from "react";
-import Card from "./Card";
-import Pokeinfo from "./Pokeinfo";
+import Card from "./Card/Card";
+import Pokeinfo from "./Pokeinfo/Pokeinfo";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import Search from "./Search";
-import Filter from "./Filter";
+import Search from "./Search/Search";
+import Filter from "./Filter/Filter";
+import { pokemonTypes } from "../pokemonTypes";
 
 const Main = () => {
   const [pokeData, setPokeData] = useState([]);
@@ -14,6 +15,15 @@ const Main = () => {
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   const [pokeDex, setPokeDex] = useState();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const pokeFun = async () => {
     setLoading(true);
@@ -81,9 +91,12 @@ const Main = () => {
 
   return (
     <>
+      <div className="header">Pokedex</div>
       <div className="search-filter-container">
         <Search fetchSearch={fetchSearch} />
-        <Filter fetchFilter={fetchFilter} />
+        {pokemonTypes.map(({ name }) => {
+          return <Filter fetchFilter={fetchFilter} type={name} />;
+        })}
       </div>
       <div className="container">
         <div className="left-content">
