@@ -7,13 +7,14 @@
 }
 
 body {
-  background-color: #fceec8;
+  background-color: rgba(228 213 213);
 }
 
 .container {
   width: 90%;
-  margin: auto;
-  padding-top: 8px;
+  /* margin: auto; */
+  padding: 16px;
+  margin: 32px;
   display: flex;
 }
 
@@ -31,7 +32,7 @@ body {
 
 .card {
   width: 300px;
-  background-color: #9edef9;
+  /* background-color: rgba(223 93 69); */
   border-radius: 1rem;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
   padding: 0 1.5rem;
@@ -46,7 +47,7 @@ body {
   text-align: center;
   color: black;
   position: fixed;
-  top: 100px;
+  top: 20%;
   right: 10px;
 }
 
@@ -84,7 +85,13 @@ body {
 }
 
 .btn-group {
-  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(238 127 83);
+  color: white;
+  text-align: center;
 }
 
 .btn-group button {
@@ -96,14 +103,24 @@ body {
   font-size: 17px;
   font-weight: bold;
   color: white;
-  background-color: #b74555;
+  background-color: rgba(222 92 50);
   border-radius: 8px;
 }
 
 .search-filter-container {
-  display: flex;
 }
 
 .header {
   padding: 16px;
+}
+
+.clear-button {
+  font-family: "Montserrat";
+  font-size: 1rem;
+  line-height: 150%;
+  font-weight: 400;
+}
+
+.filter-type {
+  background-color: rgba(222 92 50) !important;
 }

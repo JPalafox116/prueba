@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Search.css";
 
 const Search = ({ fetchSearch }) => {
   const [search, setSearch] = useState("");
@@ -13,6 +14,8 @@ const Search = ({ fetchSearch }) => {
 
   return (
     <input
+      className="search-field"
+      type="search"
       value={search}
       placeholder="Search Pokemon"
       onChange={(e) => searched(e)}

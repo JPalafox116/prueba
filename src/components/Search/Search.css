@@ -1,0 +1,14 @@
+.search-field {
+  /* flex: 1; */
+  width: 30%;
+  /* background: none; */
+  /* border: 0.13rem solid #2f5aff; */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-family: "Montserrat";
+  font-size: 1rem;
+  line-height: 150%;
+  font-weight: 400;
+  /* color: #ffffff; */
+  outline: none;
+}

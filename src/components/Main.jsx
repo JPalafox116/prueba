@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Search from "./Search/Search";
 import Filter from "./Filter/Filter";
 import { pokemonTypes } from "../pokemonTypes";
+import { Button, Menu, Fade, MenuItem } from "@mui/material";
 
 const Main = () => {
   const [pokeData, setPokeData] = useState([]);
@@ -26,6 +27,9 @@ const Main = () => {
   };
 
   const pokeFun = async () => {
+    if (pokeData.length > 0) {
+      setPokeData([]);
+    }
     setLoading(true);
     const res = await axios.get(url);
     setNextUrl(res.data.next);
@@ -34,7 +38,6 @@ const Main = () => {
     setLoading(false);
   };
   const getPokemon = async (res) => {
-    console.log(res);
     res.map(async (item) => {
       const result = await axios.get(item.url);
       setPokeData((state) => {
@@ -47,12 +50,14 @@ const Main = () => {
 
   useEffect(() => {
     pokeFun();
-  }, []);
+  }, [url]);
 
   const fetchSearch = async (value) => {
     if (value) {
       try {
-        const result = await axios.get(`${url}${value}`);
+        const result = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${value}`
+        );
         setPokeData((state) => {
           state = [result.data];
           state.sort((a, b) => (a.id > b.id ? 1 : -1));
@@ -62,7 +67,10 @@ const Main = () => {
         console.log(e);
       }
     } else {
-      setPokeData([]);
+      if (pokeData.length > 0) {
+        setPokeData([]);
+        pokeFun();
+      }
     }
   };
 
@@ -72,7 +80,6 @@ const Main = () => {
         const result = await axios.get(
           `https://pokeapi.co/api/v2/type/${value}`
         );
-        console.log(result);
         const filteredPokemon = result.data.pokemon;
         filteredPokemon.map(async (item) => {
           setPokeData([]);
@@ -94,44 +101,81 @@ const Main = () => {
       <div className="header">Pokedex</div>
       <div className="search-filter-container">
         <Search fetchSearch={fetchSearch} />
-        {pokemonTypes.map(({ name }) => {
-          return <Filter fetchFilter={fetchFilter} type={name} />;
-        })}
+        <Button
+          className="filter-type"
+          id="fade-button"
+          aria-controls={open ? "fade-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+          variant="contained"
+        >
+          Filter by Type
+        </Button>
+        <Menu
+          id="fade-menu"
+          MenuListProps={{
+            "aria-labelledby": "fade-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={Fade}
+        >
+          <MenuItem
+            onClick={() => {
+              pokeFun();
+              handleClose();
+            }}
+          >
+            <span className="clear-button">Clear</span>
+          </MenuItem>
+          {pokemonTypes.map(({ name }) => {
+            return (
+              <Filter
+                fetchFilter={fetchFilter}
+                type={name}
+                handleClose={handleClose}
+              />
+            );
+          })}
+        </Menu>
       </div>
       <div className="container">
         <div className="left-content">
-          <Card
-            pokemon={pokeData}
-            loading={loading}
-            infoPokemon={(poke) => setPokeDex(poke)}
-          />
-
-          <div className="btn-group">
-            {prevUrl && (
-              <button
-                onClick={() => {
-                  setPokeData([]);
-                  setUrl(prevUrl);
-                }}
-              >
-                Previous
-              </button>
-            )}
-            {nextUrl && (
-              <button
-                onClick={() => {
-                  setPokeData([]);
-                  setUrl(nextUrl);
-                }}
-              >
-                Next
-              </button>
-            )}
-          </div>
+          {pokeData.length > 0 && (
+            <Card
+              pokemon={pokeData}
+              loading={loading}
+              infoPokemon={(poke) => setPokeDex(poke)}
+            />
+          )}
         </div>
         <div className="right-content">
           <Pokeinfo data={pokeDex} />
         </div>
+      </div>
+      <div className="btn-group">
+        {prevUrl && (
+          <button
+            onClick={() => {
+              setPokeData([]);
+              setUrl(prevUrl);
+            }}
+          >
+            Previous
+          </button>
+        )}
+        {nextUrl && (
+          <button
+            onClick={() => {
+              setPokeData([]);
+              setUrl(nextUrl);
+            }}
+          >
+            Next
+          </button>
+        )}
       </div>
     </>
   );

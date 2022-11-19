@@ -1,9 +1,10 @@
 .filter-button {
   display: flex;
+  width: 100%;
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   flex-shrink: 0;
   font-family: "Montserrat";
   font-size: 1rem;
@@ -15,4 +16,8 @@
 
 .filter-button:hover {
   cursor: pointer;
+}
+
+.MuiMenu-list {
+  padding: 0 !important;
 }
