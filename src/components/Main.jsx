@@ -151,6 +151,7 @@ const Main = () => {
         <div className="left-content">
           {pokeData.length > 0 && (
             <Card
+              key={pokeData.id}
               pokemon={pokeData}
               loading={loading}
               infoPokemon={(poke) => setPokeDex(poke)}

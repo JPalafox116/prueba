@@ -4,12 +4,11 @@ import React from "react";
 import { pokemonTypes } from "../../pokemonTypes";
 import WeightIcon from "../../../src/assets/weight-icon.svg";
 import HeightIcon from "../../../src/assets/height-icon.svg";
+import { NavLink, useParams } from "react-router-dom";
 
 import "./Pokeinfo.css";
 
 const Pokeinfo = ({ data }) => {
-  console.log(data);
-
   return (
     <>
       {!data ? (
@@ -78,13 +77,38 @@ const Pokeinfo = ({ data }) => {
               );
             })}
           </div>
-          <Button variant="contained" className="view-more">
-            <Search />
-            View More
-          </Button>
+          <NavLink
+            key={`${data.name}-link`}
+            style={{ textDecoration: "none" }}
+            to={data.id ? `/${data.id}` : `/${data.id}/underconstruction`}
+          >
+            <Button variant="contained" className="view-more">
+              <Search />
+              View More
+            </Button>
+          </NavLink>
         </div>
       )}
     </>
   );
 };
 export default Pokeinfo;
+
+{
+  /* <NavLink
+className="card"
+key={`${item.name}-link`}
+to={
+  item.routeId
+    ? `/${item.routeId}`
+    : `/${category}/underconstruction`
+}
+>
+<img
+  className="list-img"
+  alt=""
+  src={`/images/${item.cardImage}`}
+/>
+<div className="list-name">{item.name}</div>
+</NavLink> */
+}

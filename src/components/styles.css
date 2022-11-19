@@ -103,10 +103,12 @@ body {
 }
 
 .search-filter-container {
+  text-align: center;
 }
 
 .header {
   padding: 16px;
+  text-align: center;
 }
 
 .clear-button {
