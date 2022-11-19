@@ -5,4 +5,5 @@
 
 .card-name {
   text-transform: capitalize;
+  font-weight: bold;
 }

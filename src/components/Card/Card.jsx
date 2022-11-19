@@ -21,14 +21,14 @@ const Card = ({ pokemon, loading, infoPokemon }) => {
                   onClick={() => infoPokemon(item)}
                   style={{ backgroundColor: `${color}` }}
                 >
-                  <h2>{item.id}</h2>
+                  <span className="card-name">#{item.id}</span>
                   <img
                     src={item.sprites?.other.home.front_default}
                     height={128}
                     width={128}
                     alt=""
                   />
-                  <h2 className="card-name">{item.name}</h2>
+                  <span className="card-name">{item.name}</span>
                 </div>
               </>
             );

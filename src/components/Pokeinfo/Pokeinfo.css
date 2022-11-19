@@ -10,6 +10,18 @@
 
 .info-card {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  background: rgba(203 198 246);
+  box-shadow: 0 5px 5px rgb(0 0 0 / 50%);
+  /* border: 1px solid rgb(36, 41, 63); */
+  border-image: initial;
+  border-radius: 1.5rem;
+  /* padding-top: 7rem; */
+  position: relative;
+  animation: 0.8s ease 0s 1 normal none running isvQfc;
 }
 
 .type {
@@ -28,4 +40,8 @@
   color: #fff;
   border-radius: 8px;
   margin-left: 1rem;
+}
+
+.view-more {
+  margin-bottom: 8px !important;
 }

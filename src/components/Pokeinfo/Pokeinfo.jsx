@@ -2,22 +2,13 @@ import { Search } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React from "react";
 import { pokemonTypes } from "../../pokemonTypes";
+import WeightIcon from "../../../src/assets/weight-icon.svg";
+import HeightIcon from "../../../src/assets/height-icon.svg";
 
 import "./Pokeinfo.css";
 
 const Pokeinfo = ({ data }) => {
-  // return (
-  //   <button
-  //     className="filter-button"
-  //     onClick={() => {
-  //       handleClose();
-  //       fetchFilter(`${name}`);
-  //     }}
-  //     style={{ backgroundColor: `${color}` }}
-  //   >
-  //     <img src={imgUrl} width={16} height={16} alt={name} color={color} />
-  //     {name}
-  //   </button>
+  console.log(data);
 
   return (
     <>
@@ -38,6 +29,7 @@ const Pokeinfo = ({ data }) => {
               );
 
               const imgUrl = require(`/src/assets/pokemonTypes/${name}.svg`);
+
               return (
                 <>
                   <div className="type" style={{ backgroundColor: `${color}` }}>
@@ -48,12 +40,33 @@ const Pokeinfo = ({ data }) => {
                       alt={name}
                       color={color}
                     />
-                    <h2>{poke.type.name}</h2>
+                    <span>{poke.type.name}</span>
                   </div>
                 </>
               );
             })}
           </div>
+          <div className="abilities">
+            <div className="group">
+              <img src={WeightIcon} />
+              <h2>{data.weight / 10} kg</h2>
+            </div>
+            <div className="group">
+              <img src={HeightIcon} />
+              <h2>{data.height / 10} m</h2>
+            </div>
+          </div>
+          {/* <div className="abilities">
+            {data.abilities.map((poke) => {
+              return (
+                <>
+                  <div className="group">
+                    <h2>{poke.ability.name}</h2>
+                  </div>
+                </>
+              );
+            })}
+          </div> */}
           <div className="base-stat">
             {data.stats.map((poke) => {
               return (
@@ -65,7 +78,7 @@ const Pokeinfo = ({ data }) => {
               );
             })}
           </div>
-          <Button variant="contained">
+          <Button variant="contained" className="view-more">
             <Search />
             View More
           </Button>
