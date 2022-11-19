@@ -8,6 +8,7 @@ import Search from "./Search/Search";
 import Filter from "./Filter/Filter";
 import { pokemonTypes } from "../pokemonTypes";
 import { Button, Menu, Fade, MenuItem } from "@mui/material";
+import { Close } from "@mui/icons-material";
 
 const Main = () => {
   const [pokeData, setPokeData] = useState([]);
@@ -16,6 +17,7 @@ const Main = () => {
   const [nextUrl, setNextUrl] = useState();
   const [prevUrl, setPrevUrl] = useState();
   const [pokeDex, setPokeDex] = useState();
+  const imgUrl = require(`../assets/pokedex/pokedex.webp`);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -98,7 +100,9 @@ const Main = () => {
 
   return (
     <>
-      <div className="header">Pokedex</div>
+      <div className="header">
+        <img src={imgUrl} width={125} height={40} />
+      </div>
       <div className="search-filter-container">
         <Search fetchSearch={fetchSearch} />
         <Button
@@ -122,14 +126,16 @@ const Main = () => {
           onClose={handleClose}
           TransitionComponent={Fade}
         >
-          <MenuItem
+          <button
             onClick={() => {
               pokeFun();
               handleClose();
             }}
+            className="clear-button"
           >
-            <span className="clear-button">Clear</span>
-          </MenuItem>
+            <Close fontSize="16" />
+            <span>Clear</span>
+          </button>
           {pokemonTypes.map(({ name }) => {
             return (
               <Filter
