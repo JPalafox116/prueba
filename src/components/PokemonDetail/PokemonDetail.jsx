@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { pokemonTypes } from "../../pokemonTypes";
+import { pokemonDetailColors } from "../../pokemonDetailColors";
 import { NavLink, useParams } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import axios from "axios";
 import "./PokemonDetail.css";
+import About from "./Tabs/About/About";
+import Stats from "./Tabs/Stats/Stats";
+import Evolution from "./Tabs/Evolution/Evolution";
+import Pokeball from "../../assets/pokeball.svg";
 
 const PokemonDetail = () => {
   const [pokemon, setPokemonData] = useState({});
   const [pokemonSpecies, setPokemonSpecies] = useState({});
+
+  const [nameSectionActive, setNameSectionActive] = useState("about");
+  const [currentColor, setCurrentColor] = useState("");
 
   const { category } = useParams();
 
@@ -26,13 +34,43 @@ const PokemonDetail = () => {
     };
 
     callFetch().catch(console.error);
-  }, []);
+  }, [category]);
 
-  console.log(pokemon);
-  console.log(pokemonSpecies);
+  useEffect(() => {
+    if (pokemon.data?.types[0]?.type?.name) {
+      const [{ color }] = pokemonDetailColors.filter(
+        (item) => item.name === pokemon.data?.types[0]?.type?.name
+      );
+      setCurrentColor(color);
+    }
+  }, [pokemon.data?.types]);
+
+  const screenSelected = useMemo(() => {
+    switch (nameSectionActive) {
+      case "about":
+        return (
+          <About
+            pokemon={pokemon}
+            pokemonSpecies={pokemonSpecies}
+            currentColor={currentColor}
+          />
+        );
+      case "stats":
+        return (
+          <Stats stats={pokemon.data?.stats} currentColor={currentColor} />
+        );
+      case "evolution":
+        return (
+          <Evolution name={pokemon.data?.name} currentColor={currentColor} />
+        );
+      default:
+        return <></>;
+    }
+  }, [nameSectionActive, currentColor, pokemon, pokemonSpecies]);
+
   return (
     <>
-      <div className="pokemon-detail">
+      <div className="pokemon-detail" style={{ background: `${currentColor}` }}>
         <NavLink to="/">
           <ArrowBackIosIcon className="back-button" fontSize="large" />
         </NavLink>
@@ -40,10 +78,10 @@ const PokemonDetail = () => {
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.data?.id}.png`}
             alt=""
-            height={160}
+            height="200"
           />
-          <div>#{pokemon.data?.id}</div>
-          <div>{pokemon.data?.name}</div>
+          <div className="pokemon-detail-number">#{pokemon.data?.id}</div>
+          <div className="pokemon-detail-name">{pokemon.data?.name}</div>
           <div className="abilities">
             {pokemon.data?.types.map((poke) => {
               const [{ name, color }] = pokemonTypes.filter(
@@ -51,7 +89,6 @@ const PokemonDetail = () => {
               );
 
               const imgUrl = require(`/src/assets/pokemonTypes/${name}.svg`);
-
               return (
                 <>
                   <div className="type" style={{ backgroundColor: `${color}` }}>
@@ -68,7 +105,23 @@ const PokemonDetail = () => {
               );
             })}
           </div>
-          <div className="pokemon-description">description</div>
+          <div className="pokemon-description">
+            {["about", "stats", "evolution"].map((nameSection) => (
+              <button
+                key={nameSection}
+                type="button"
+                onClick={() => setNameSectionActive(nameSection)}
+                active={nameSection === nameSectionActive}
+                className="tab-button"
+              >
+                {nameSection}
+                {nameSection === nameSectionActive && (
+                  <img className="highlight-pokeball" src={Pokeball} alt="" />
+                )}
+              </button>
+            ))}
+          </div>
+          <div className="active-screen">{screenSelected}</div>
         </div>
       </div>
     </>

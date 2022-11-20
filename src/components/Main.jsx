@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import Search from "./Search/Search";
 import Filter from "./Filter/Filter";
 import { pokemonTypes } from "../pokemonTypes";
-import { Button, Menu, Fade, MenuItem } from "@mui/material";
+import { Button, Menu, Fade } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
 const Main = () => {
@@ -101,7 +101,7 @@ const Main = () => {
   return (
     <>
       <div className="header">
-        <img src={imgUrl} width={125} height={40} />
+        <img src={imgUrl} width={125} height={40} alt="logo" />
       </div>
       <div className="search-filter-container">
         <Search fetchSearch={fetchSearch} />
