@@ -1,8 +1,8 @@
 export const pokemonDetailColors = [
-  { name: "bug", color: "rgb(156 212 127)" },
+  { name: "bug", color: "rgb(156 212 227)" },
   { name: "dark", color: "rgb(111 110 119)" },
-  { name: "dragon", color: "rgb(118	130	181)" },
-  { name: "electric", color: "rgb(236 204 105)" },
+  { name: "dragon", color: "rgb(118 130 181)" },
+  { name: "electric", color: "rgb(248 220 139)" },
   { name: "fairy", color: "rgb(225 171 194)" },
   { name: "fighting", color: "rgb(217 86 114)" },
   { name: "fire", color: "rgb(242 171 101)" },
