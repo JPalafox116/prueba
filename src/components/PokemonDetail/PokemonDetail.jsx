@@ -61,7 +61,11 @@ const PokemonDetail = () => {
         );
       case "evolution":
         return (
-          <Evolution name={pokemon.data?.name} currentColor={currentColor} />
+          <Evolution
+            pokemon={pokemon}
+            name={pokemon.data?.name}
+            currentColor={currentColor}
+          />
         );
       default:
         return <></>;
