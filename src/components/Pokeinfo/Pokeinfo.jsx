@@ -55,17 +55,6 @@ const Pokeinfo = ({ data }) => {
               <h2>{data.height / 10} m</h2>
             </div>
           </div>
-          {/* <div className="abilities">
-            {data.abilities.map((poke) => {
-              return (
-                <>
-                  <div className="group">
-                    <h2>{poke.ability.name}</h2>
-                  </div>
-                </>
-              );
-            })}
-          </div> */}
           <div className="base-stat">
             {data.stats.map((poke) => {
               return (
@@ -80,7 +69,7 @@ const Pokeinfo = ({ data }) => {
           <NavLink
             key={`${data.name}-link`}
             style={{ textDecoration: "none" }}
-            to={data.id ? `/${data.id}` : `/${data.id}/underconstruction`}
+            to={data.name && `/${data.name}`}
           >
             <Button variant="contained" className="view-more">
               <Search />

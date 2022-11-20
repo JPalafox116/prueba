@@ -10,7 +10,7 @@ import Stats from "./Tabs/Stats/Stats";
 import Evolution from "./Tabs/Evolution/Evolution";
 import Pokeball from "../../assets/pokeball.svg";
 import { ReactComponent as Shiny } from "../../assets/shiny.svg";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 
 const PokemonDetail = () => {
   const [pokemon, setPokemonData] = useState({});
@@ -82,14 +82,18 @@ const PokemonDetail = () => {
     <>
       <div className="pokemon-detail" style={{ background: `${currentColor}` }}>
         <NavLink to="/">
-          <ArrowBackIosIcon className="back-button" fontSize="large" />
+          <Tooltip title="Back">
+            <ArrowBackIosIcon className="back-button" fontSize="large" />
+          </Tooltip>
         </NavLink>
-        <IconButton
-          className={shiny ? "non-shiny" : "shiny-button"}
-          onClick={() => showShiny()}
-        >
-          <Shiny />
-        </IconButton>
+        <Tooltip title={shiny ? "Regular" : "Shiny"}>
+          <IconButton
+            className={shiny ? "non-shiny" : "shiny-button"}
+            onClick={() => showShiny()}
+          >
+            <Shiny />
+          </IconButton>
+        </Tooltip>
         <div className="pokemon-info">
           {!shiny && (
             <img

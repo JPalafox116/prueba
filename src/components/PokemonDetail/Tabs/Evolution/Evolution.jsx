@@ -74,13 +74,14 @@ const Evolution = ({ pokemon, name, currentColor }) => {
               </div>
             )}
             <div className="evolution-column">
-              <NavLink to={`/pokemon/${evolves.name}`} />
-              <img
-                width={128}
-                height={128}
-                src={evolves.image}
-                alt={`pokemon image ${evolves.name}`}
-              />
+              <NavLink to={`/${evolves.name}`}>
+                <img
+                  width={128}
+                  height={128}
+                  src={evolves.image}
+                  alt={`pokemon image ${evolves.name}`}
+                />
+              </NavLink>
               <p>{evolves.number}</p>
               <h4>{evolves.name}</h4>
             </div>
