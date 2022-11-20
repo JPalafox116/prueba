@@ -19,6 +19,42 @@
   color: #000000;
 }
 
+.shiny-button {
+  position: fixed !important;
+  top: 2vw;
+  right: 1vw;
+  z-index: 10;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+}
+
+.non-shiny {
+  position: fixed !important;
+  top: 2vw;
+  right: 1vw;
+  z-index: 10;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+}
+
+.non-shiny svg path {
+  fill: black;
+}
+
+.non-shiny:hover {
+  cursor: pointer;
+}
+
+.shiny-button:hover {
+  cursor: pointer;
+}
+
 .pokemon-info {
   margin-top: 4vw;
   text-align: center;

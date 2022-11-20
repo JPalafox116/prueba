@@ -9,6 +9,8 @@ import About from "./Tabs/About/About";
 import Stats from "./Tabs/Stats/Stats";
 import Evolution from "./Tabs/Evolution/Evolution";
 import Pokeball from "../../assets/pokeball.svg";
+import { ReactComponent as Shiny } from "../../assets/shiny.svg";
+import { IconButton } from "@mui/material";
 
 const PokemonDetail = () => {
   const [pokemon, setPokemonData] = useState({});
@@ -16,8 +18,12 @@ const PokemonDetail = () => {
 
   const [nameSectionActive, setNameSectionActive] = useState("about");
   const [currentColor, setCurrentColor] = useState("");
-
+  const [shiny, setShiny] = useState(false);
   const { category } = useParams();
+
+  const showShiny = () => {
+    setShiny(!shiny);
+  };
 
   useEffect(() => {
     const callFetch = async () => {
@@ -78,12 +84,28 @@ const PokemonDetail = () => {
         <NavLink to="/">
           <ArrowBackIosIcon className="back-button" fontSize="large" />
         </NavLink>
+        <IconButton
+          className={shiny ? "non-shiny" : "shiny-button"}
+          onClick={() => showShiny()}
+        >
+          <Shiny />
+        </IconButton>
         <div className="pokemon-info">
-          <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.data?.id}.png`}
-            alt=""
-            height="200"
-          />
+          {!shiny && (
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.data?.id}.png`}
+              alt=""
+              height="200"
+            />
+          )}
+          {shiny && (
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${pokemon.data?.id}.png`}
+              alt=""
+              height="200"
+            />
+          )}
+
           <div className="pokemon-detail-number">#{pokemon.data?.id}</div>
           <div className="pokemon-detail-name">{pokemon.data?.name}</div>
           <div className="abilities">
