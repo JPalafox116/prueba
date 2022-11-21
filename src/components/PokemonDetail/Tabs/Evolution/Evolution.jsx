@@ -15,6 +15,9 @@ const Evolution = ({ pokemon, name }) => {
         {
           name: species.name,
           level: 0,
+          item: evolution_details[0]?.item?.name,
+          held_item: evolution_details[0]?.held_item?.name,
+          trigger: evolution_details[0]?.trigger?.name,
         },
       ];
       if (evolution_details.length)
@@ -23,7 +26,6 @@ const Evolution = ({ pokemon, name }) => {
       evolves_to.forEach((evolves) => {
         namesPokemons = namesPokemons.concat(handleNameSpecies(evolves));
       });
-
       return namesPokemons;
     },
     []
@@ -64,13 +66,28 @@ const Evolution = ({ pokemon, name }) => {
   return (
     <div className="evolution">
       {evolvesPokemon.length
-        ? evolvesPokemon.slice(0, 6).map((evolves, index) => (
+        ? evolvesPokemon.slice(0, 9).map((evolves, index) => (
             <React.Fragment key={evolves.level}>
               {index !== 0 && (
                 <div className="evolution-arrow">
                   <ArrowForward color="rgba(0, 0, 0, 0.06)" />
                   {evolves.level && <p>(Level {evolves.level})</p>}
-                  {!evolves.level && <p>(Special Evolution)</p>}
+                  {evolves.item && (
+                    <img
+                      alt={evolves.item}
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${evolves.item}.png`}
+                    />
+                  )}
+                  {evolves.held_item && (
+                    <img
+                      alt={evolves.held_item}
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${evolves.held_item}.png`}
+                    />
+                  )}
+                  {!evolves.level && !evolves.item && !evolves.held_item && (
+                    <p>(High Friendship)</p>
+                  )}
+                  {evolves.trigger && <p>(Evolves from {evolves.trigger})</p>}
                 </div>
               )}
               <div className="evolution-column">
