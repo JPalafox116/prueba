@@ -5,7 +5,6 @@
   text-transform: capitalize;
   text-align: center;
   display: block;
-  /* margin: 0.25rem 0.5rem 0.75rem; */
 }
 
 .info-card {
@@ -16,25 +15,20 @@
   align-items: center;
   background: rgba(203 198 246);
   box-shadow: 0 5px 5px rgb(0 0 0 / 50%);
-  /* border: 1px solid rgb(36, 41, 63); */
   border-image: initial;
   border-radius: 1.5rem;
-  /* padding-top: 7rem; */
   position: relative;
   animation: 0.8s ease 0s 1 normal none running isvQfc;
 }
 
 .type {
   display: flex;
-  /* width: 100%; */
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
-  /* border-radius: 0.5rem; */
   flex-shrink: 0;
   font-family: "Montserrat";
   font-size: 1rem;
-  /* line-height: 150%; */
   font-weight: 400;
   text-transform: capitalize;
   color: #fff;

@@ -1,6 +1,4 @@
 .pokemon-detail {
-  /* width: 100%; */
-  /* height: 100vh; */
   overflow: auto;
 }
 
@@ -58,7 +56,6 @@
 .pokemon-info {
   margin-top: 4vw;
   text-align: center;
-  /* display: 1 1 0%; */
   position: relative;
   align-items: center;
   align-self: center;

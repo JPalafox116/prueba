@@ -29,7 +29,6 @@ const Main = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
-    setFiltered(!filtered);
   };
 
   const pokeFun = async () => {
@@ -96,6 +95,7 @@ const Main = () => {
             return state;
           });
         });
+        setFiltered(true);
       } catch (e) {
         console.log(e);
       }
