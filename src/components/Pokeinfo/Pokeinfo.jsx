@@ -9,6 +9,17 @@ import { NavLink } from "react-router-dom";
 import "./Pokeinfo.css";
 
 const Pokeinfo = ({ data }) => {
+  const statsContent = [
+    { title: "HP", field: "hp" },
+    { title: "Attack", field: "attack" },
+    { title: "Defense", field: "defense" },
+    { title: "Special Attack", field: "specialAttack" },
+    { title: "Special Defense", field: "specialDefense" },
+    { title: "Speed", field: "speed" },
+  ];
+
+  console.log(data);
+
   return (
     <>
       {!data ? (
@@ -46,25 +57,18 @@ const Pokeinfo = ({ data }) => {
             })}
           </div>
           <div className="abilities">
-            <div className="group">
-              <img src={WeightIcon} />
-              <h2>{data.weight / 10} kg</h2>
-            </div>
-            <div className="group">
-              <img src={HeightIcon} />
-              <h2>{data.height / 10} m</h2>
-            </div>
+            {data?.abilities.map((item) => {
+              return <h2 className="group">{item.ability?.name}</h2>;
+            })}
           </div>
           <div className="base-stat">
-            {data.stats.map((poke) => {
-              return (
-                <>
-                  <h3>
-                    {poke.stat.name}:{poke.base_stat}
-                  </h3>
-                </>
-              );
-            })}
+            {statsContent &&
+              statsContent.map((stat, index) => (
+                <div className="row" key={stat.field}>
+                  <strong>{stat.title}</strong>
+                  <span>{data?.stats[index].base_stat || 1}</span>
+                </div>
+              ))}
           </div>
           <NavLink
             key={`${data.name}-link`}

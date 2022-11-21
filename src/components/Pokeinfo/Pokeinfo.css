@@ -39,7 +39,10 @@
   text-transform: capitalize;
   color: #fff;
   border-radius: 8px;
-  /* margin-left: 1rem; */
+}
+
+.type:nth-child(n + 2) {
+  margin-left: 0.5rem;
 }
 
 .view-more {

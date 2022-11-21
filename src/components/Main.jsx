@@ -9,6 +9,7 @@ import Filter from "./Filter/Filter";
 import { pokemonTypes } from "../pokemonTypes";
 import { Button, Menu, Fade } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { SocialMedia } from "./SocialMedia/SocialMedia";
 
 const Main = () => {
   const [pokeData, setPokeData] = useState([]);
@@ -19,7 +20,7 @@ const Main = () => {
   const [pokeDex, setPokeDex] = useState();
   const imgUrl = require(`../assets/pokedex/pokedex.webp`);
 
-  const [pokemonSpecies, setPokemonSpecies] = useState(null);
+  const [filtered, setFiltered] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -28,6 +29,7 @@ const Main = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    setFiltered(!filtered);
   };
 
   const pokeFun = async () => {
@@ -104,6 +106,7 @@ const Main = () => {
     <>
       <div className="header">
         <img src={imgUrl} width={125} height={40} alt="logo" />
+        <SocialMedia />
       </div>
       <div className="search-filter-container">
         <Search fetchSearch={fetchSearch} />
@@ -132,6 +135,7 @@ const Main = () => {
             onClick={() => {
               pokeFun();
               handleClose();
+              setFiltered(false);
             }}
             className="clear-button"
           >
@@ -165,25 +169,29 @@ const Main = () => {
         </div>
       </div>
       <div className="btn-group">
-        {prevUrl && (
-          <button
-            onClick={() => {
-              setPokeData([]);
-              setUrl(prevUrl);
-            }}
-          >
-            Previous
-          </button>
-        )}
-        {nextUrl && (
-          <button
-            onClick={() => {
-              setPokeData([]);
-              setUrl(nextUrl);
-            }}
-          >
-            Next
-          </button>
+        {!filtered && (
+          <>
+            {prevUrl && (
+              <button
+                onClick={() => {
+                  setPokeData([]);
+                  setUrl(prevUrl);
+                }}
+              >
+                Previous
+              </button>
+            )}
+            {nextUrl && (
+              <button
+                onClick={() => {
+                  setPokeData([]);
+                  setUrl(nextUrl);
+                }}
+              >
+                Next
+              </button>
+            )}
+          </>
         )}
       </div>
     </>

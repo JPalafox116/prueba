@@ -131,6 +131,11 @@ const PokemonDetail = () => {
               );
             })}
           </div>
+          <div className="abilities">
+            {pokemon.data?.abilities.map((item) => {
+              return <h2 className="group">{item.ability?.name}</h2>;
+            })}
+          </div>
           <div className="pokemon-description">
             {["about", "stats", "evolution"].map((nameSection) => (
               <button
