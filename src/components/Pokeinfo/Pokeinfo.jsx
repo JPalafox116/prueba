@@ -4,7 +4,7 @@ import React from "react";
 import { pokemonTypes } from "../../pokemonTypes";
 import WeightIcon from "../../../src/assets/weight-icon.svg";
 import HeightIcon from "../../../src/assets/height-icon.svg";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import "./Pokeinfo.css";
 
@@ -82,22 +82,3 @@ const Pokeinfo = ({ data }) => {
   );
 };
 export default Pokeinfo;
-
-{
-  /* <NavLink
-className="card"
-key={`${item.name}-link`}
-to={
-  item.routeId
-    ? `/${item.routeId}`
-    : `/${category}/underconstruction`
-}
->
-<img
-  className="list-img"
-  alt=""
-  src={`/images/${item.cardImage}`}
-/>
-<div className="list-name">{item.name}</div>
-</NavLink> */
-}

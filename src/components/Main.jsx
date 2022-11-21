@@ -19,6 +19,8 @@ const Main = () => {
   const [pokeDex, setPokeDex] = useState();
   const imgUrl = require(`../assets/pokedex/pokedex.webp`);
 
+  const [pokemonSpecies, setPokemonSpecies] = useState(null);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {

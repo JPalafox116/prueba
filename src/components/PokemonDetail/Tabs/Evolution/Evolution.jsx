@@ -4,7 +4,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import "./Evolution.css";
 
-const Evolution = ({ pokemon, name, currentColor }) => {
+const Evolution = ({ pokemon, name }) => {
   const [pokemonsFamily, setPokemonsFamily] = useState([]);
 
   const [evolvesPokemon, setEvolvesPokemon] = useState([]);
@@ -63,33 +63,34 @@ const Evolution = ({ pokemon, name, currentColor }) => {
 
   return (
     <div className="evolution">
-      {evolvesPokemon.length ? (
-        evolvesPokemon.slice(0, 6).map((evolves, index) => (
-          <React.Fragment key={evolves.level}>
-            {index !== 0 && (
-              <div className="evolution-arrow">
-                <ArrowForward color="rgba(0, 0, 0, 0.06)" />
-                {evolves.level && <p>(Level {evolves.level})</p>}
-                {!evolves.level && <p>(Special Evolution)</p>}
+      {evolvesPokemon.length
+        ? evolvesPokemon.slice(0, 6).map((evolves, index) => (
+            <React.Fragment key={evolves.level}>
+              {index !== 0 && (
+                <div className="evolution-arrow">
+                  <ArrowForward color="rgba(0, 0, 0, 0.06)" />
+                  {evolves.level && <p>(Level {evolves.level})</p>}
+                  {!evolves.level && <p>(Special Evolution)</p>}
+                </div>
+              )}
+              <div className="evolution-column">
+                <NavLink to={`/${evolves.name}`}>
+                  <img
+                    width={128}
+                    height={128}
+                    src={evolves.image}
+                    alt={`pokemon image ${evolves.name}`}
+                  />
+                </NavLink>
+                <p>{evolves.number}</p>
+                <h4>{evolves.name}</h4>
               </div>
-            )}
-            <div className="evolution-column">
-              <NavLink to={`/${evolves.name}`}>
-                <img
-                  width={128}
-                  height={128}
-                  src={evolves.image}
-                  alt={`pokemon image ${evolves.name}`}
-                />
-              </NavLink>
-              <p>{evolves.number}</p>
-              <h4>{evolves.name}</h4>
-            </div>
-          </React.Fragment>
-        ))
-      ) : (
-        <h1 style={{ textAlign: "center" }}>Loading...</h1>
-      )}
+            </React.Fragment>
+          ))
+        : pokemonsFamily.length > 0 &&
+          evolvesPokemon.length > 0 && (
+            <h1 style={{ textAlign: "center" }}>Loading...</h1>
+          )}
     </div>
   );
 };

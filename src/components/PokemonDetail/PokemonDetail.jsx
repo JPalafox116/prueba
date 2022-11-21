@@ -30,16 +30,18 @@ const PokemonDetail = () => {
       const pokemonData = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${category}`
       );
+      setPokemonData(pokemonData);
+    };
 
+    const callFetchSpecies = async () => {
       const pokemonSpeciesData = await axios.get(
         `https://pokeapi.co/api/v2/pokemon-species/${category}`
       );
-
-      setPokemonData(pokemonData);
       setPokemonSpecies(pokemonSpeciesData);
     };
 
     callFetch().catch(console.error);
+    callFetchSpecies().catch(console.error);
   }, [category]);
 
   useEffect(() => {
@@ -66,13 +68,7 @@ const PokemonDetail = () => {
           <Stats stats={pokemon.data?.stats} currentColor={currentColor} />
         );
       case "evolution":
-        return (
-          <Evolution
-            pokemon={pokemon}
-            name={pokemon.data?.name}
-            currentColor={currentColor}
-          />
-        );
+        return <Evolution pokemon={pokemon} name={pokemon.data?.name} />;
       default:
         return <></>;
     }

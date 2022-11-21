@@ -6,7 +6,7 @@ const About = ({ pokemon, pokemonSpecies, currentColor }) => {
 
   // extracts the english flavor text to display
   useEffect(() => {
-    if (pokemon.data?.id) {
+    if (pokemon.data) {
       fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${pokemon.data?.id}`
       ).then((result) => {
@@ -51,21 +51,25 @@ const About = ({ pokemon, pokemonSpecies, currentColor }) => {
           </ul>
         </div>
         <div className="about-group">
-          <h3 style={{ color: `${currentColor}` }}>Training</h3>
-          <ul>
-            <li>
-              <strong>Catch Rate</strong>
-              <span>{pokemonSpecies.data?.capture_rate}</span>
-            </li>
-            <li>
-              <strong>Base Friendship</strong>
-              <span>{pokemonSpecies.data?.base_happiness}</span>
-            </li>
-            <li>
-              <strong>Growth Rate</strong>
-              <span>{pokemonSpecies.data?.growth_rate.name}</span>
-            </li>
-          </ul>
+          {pokemonSpecies && (
+            <>
+              <h3 style={{ color: `${currentColor}` }}>Training</h3>
+              <ul>
+                <li>
+                  <strong>Catch Rate</strong>
+                  <span>{pokemonSpecies.data?.capture_rate || "N/A"}</span>
+                </li>
+                <li>
+                  <strong>Base Friendship</strong>
+                  <span>{pokemonSpecies.data?.base_happiness || "N/A"}</span>
+                </li>
+                <li>
+                  <strong>Growth Rate</strong>
+                  <span>{pokemonSpecies.data?.growth_rate.name || "N/A"}</span>
+                </li>
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </div>

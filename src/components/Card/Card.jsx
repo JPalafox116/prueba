@@ -23,7 +23,7 @@ const Card = ({ pokemon, loading, infoPokemon }) => {
                 >
                   <span className="card-name">#{item.id}</span>
                   <img
-                    src={item.sprites?.other.home.front_default}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${item.id}.png`}
                     height={128}
                     width={128}
                     alt=""
