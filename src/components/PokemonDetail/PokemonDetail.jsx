@@ -140,7 +140,12 @@ const PokemonDetail = () => {
                 active={nameSection === nameSectionActive}
                 className="tab-button"
               >
-                {nameSection}
+                {nameSection === "evolution" &&
+                pokemonSpecies.data?.evolution_chain === undefined ? (
+                  <></>
+                ) : (
+                  nameSection
+                )}
                 {nameSection === nameSectionActive && (
                   <img className="highlight-pokeball" src={Pokeball} alt="" />
                 )}
