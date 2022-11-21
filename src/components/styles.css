@@ -7,13 +7,11 @@
 
 body {
   background: rgb(235 228 253);
-  /* background-color: rgba(228 213 213); */
   font-family: "Roboto", sans-serif;
 }
 
 .container {
   width: 90%;
-  /* margin: auto; */
   padding: 16px;
   margin: 32px;
   display: flex;
@@ -33,7 +31,6 @@ body {
 
 .card {
   width: 325px;
-  /* background-color: rgba(223 93 69); */
   border-radius: 1rem;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
   padding: 0 1.5rem;
@@ -49,12 +46,10 @@ body {
   color: black;
   position: fixed;
   top: 25%;
-  /* right: 10px; */
   right: -10%;
 }
 
 .abilities {
-  /* width: 70%; */
   margin: auto;
   display: flex;
   justify-content: center;
@@ -77,8 +72,8 @@ body {
 }
 
 .base-stat {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .btn-group {

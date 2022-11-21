@@ -17,7 +17,7 @@ const Search = ({ fetchSearch }) => {
       className="search-field"
       type="search"
       value={search}
-      placeholder="Search Pokemon"
+      placeholder="Search Pokémon"
       onChange={(e) => searched(e)}
     ></input>
   );
