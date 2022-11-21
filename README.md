@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="screenshot" width="100%" src="./.github/screenshot.png" />
+  <img alt="screenshot" width="100%" src="./.git/screenshot.png" />
 </p>
 
 # Getting Started with Create React App
