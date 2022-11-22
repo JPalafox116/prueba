@@ -7,7 +7,7 @@ export const pokemonDetailColors = [
   { name: "fighting", color: "rgb(217 86 114)" },
   { name: "fire", color: "rgb(242 171 101)" },
   { name: "flying", color: "rgb(137	161	222)" },
-  { name: "ghost", color: "rgb(81 105 174)" },
+  { name: "ghost", color: "rgb(130 114 185)" },
   { name: "grass", color: "rgb(150 189 143)" },
   { name: "ground", color: "rgb(232	139	92)" },
   { name: "ice", color: "rgb(161 214 221)" },

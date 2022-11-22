@@ -18,6 +18,8 @@ const Evolution = ({ pokemon, name }) => {
           item: evolution_details[0]?.item?.name,
           held_item: evolution_details[0]?.held_item?.name,
           trigger: evolution_details[0]?.trigger?.name,
+          // slice last 5 characters to get the id instead of number because names have hyphens
+          id: species.url.slice(-5).replace(/\D/g, "").replaceAll("/", ""),
         },
       ];
       if (evolution_details.length)
@@ -45,9 +47,9 @@ const Evolution = ({ pokemon, name }) => {
 
   useEffect(() => {
     if (pokemonsFamily.length) {
-      const urlsAxios = pokemonsFamily.map((p) =>
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${p.name}`)
-      );
+      const urlsAxios = pokemonsFamily.map((p) => {
+        return axios.get(`https://pokeapi.co/api/v2/pokemon/${p.id}`);
+      });
 
       Promise.all([...urlsAxios]).then((responses) => {
         const result = responses.map((response, index) => {
@@ -84,14 +86,18 @@ const Evolution = ({ pokemon, name }) => {
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${evolves.held_item}.png`}
                     />
                   )}
-                  {!evolves.level && !evolves.item && !evolves.held_item && (
-                    <p>(High Friendship)</p>
-                  )}
+                  {!evolves.level &&
+                    !evolves.item &&
+                    !evolves.held_item &&
+                    evolves.trigger === "level-up" && <p>(High Friendship)</p>}
                   {evolves.trigger && <p>(Evolves from {evolves.trigger})</p>}
                 </div>
               )}
               <div className="evolution-column">
-                <NavLink to={`/${evolves.name}`}>
+                <NavLink
+                  // limitation with api some hyphened names do not work so use id to get entry
+                  to={`/${evolves.id}`}
+                >
                   <img
                     width={128}
                     height={128}
