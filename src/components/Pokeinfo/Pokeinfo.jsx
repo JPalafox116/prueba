@@ -2,8 +2,6 @@ import { Search } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React from "react";
 import { pokemonTypes } from "../../pokemonTypes";
-import WeightIcon from "../../../src/assets/weight-icon.svg";
-import HeightIcon from "../../../src/assets/height-icon.svg";
 import { NavLink } from "react-router-dom";
 
 import "./Pokeinfo.css";
