@@ -1,4 +1,3 @@
-// import * as C from "./styles";
 import { ReactComponent as LinkedinLogo } from "../../assets/logo-linkedin.svg";
 import { ReactComponent as GithubLogo } from "../../assets/logo-github.svg";
 
